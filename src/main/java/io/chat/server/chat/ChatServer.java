@@ -1,7 +1,7 @@
-package io.b0bai.chat;
+package io.chat.server.chat;
 
-import io.b0bai.rpc.Request;
-import io.b0bai.rpc.Response;
+import io.chat.server.rpc.Request;
+import io.chat.server.rpc.Response;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kafka.consumer.Consumer;

@@ -1,4 +1,4 @@
-package io.b0bai.chat;
+package io.chat.server.chat;
 
 public class Message implements Comparable<Message>{
     private String sender;

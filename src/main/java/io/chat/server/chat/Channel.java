@@ -1,4 +1,4 @@
-package io.b0bai.chat;
+package io.chat.server.chat;
 
 import java.util.ArrayList;
 import java.util.List;

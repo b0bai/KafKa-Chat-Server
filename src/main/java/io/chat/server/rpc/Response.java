@@ -1,4 +1,4 @@
-package io.b0bai.rpc;
+package io.chat.server.rpc;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

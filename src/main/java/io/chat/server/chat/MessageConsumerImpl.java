@@ -1,4 +1,4 @@
-package io.b0bai.chat;
+package io.chat.server.chat;
 
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
