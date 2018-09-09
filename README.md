@@ -62,11 +62,3 @@ A CLI Chat Program Based on Apache Kafka
 * Login with existed nickname
 * Multiclient chat
 
-#### Testing Screenshoot:
-![alt text](https://github.com/edmundophie/kafka-chat/blob/master/blob/testing_screenshot_prak_5.png "Testing Result")
-
-## Team Member
-- Edmund Ophie 13512095
-- Kevin 13512097
-
-## [Github Link](https://github.com/edmundophie/kafka-chat.git) 
