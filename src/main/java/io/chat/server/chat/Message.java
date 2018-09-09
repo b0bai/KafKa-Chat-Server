@@ -1,4 +1,4 @@
-package io.bobaikato.chat;
+package io.b0bai.chat;
 
 public class Message implements Comparable<Message>{
     private String sender;

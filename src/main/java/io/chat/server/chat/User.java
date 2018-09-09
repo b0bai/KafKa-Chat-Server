@@ -1,4 +1,4 @@
-package io.bobaikato.chat;
+package io.b0bai.chat;
 
 import java.util.ArrayList;
 import java.util.List;

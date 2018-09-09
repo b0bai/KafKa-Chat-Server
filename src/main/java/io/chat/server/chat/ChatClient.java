@@ -1,7 +1,7 @@
-package io.bobaikato.chat;
+package io.b0bai.chat;
 
-import io.bobaikato.rpc.Request;
-import io.bobaikato.rpc.Response;
+import io.b0bai.rpc.Request;
+import io.b0bai.rpc.Response;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kafka.consumer.Consumer;
 import kafka.consumer.ConsumerConfig;
