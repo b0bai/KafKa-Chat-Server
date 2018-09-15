@@ -28,6 +28,7 @@ public class ChatClient {
     private final static String RPC_RESPONSE_TOPIC_NAME = "rpcResponseTopic";
     private static ConsumerConfig consumerConfig;
 
+
     private ConsumerConnector consumerConnector;
     private ConsumerIterator<byte[], byte[]> consumerIterator;
     private String consumerGroup;

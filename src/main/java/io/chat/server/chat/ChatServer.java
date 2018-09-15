@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class ChatServer {
-    private static Producer responseProducer;
+    private static Producer<String, String> responseProducer;
     private final static String BROKER_LIST = "localhost:9092";
     private final static String PRODUCER_TYPE= "sync";
     private final static String SERIALIZER = "kafka.serializer.StringEncoder";
@@ -51,7 +51,7 @@ public class ChatServer {
         responseProducer.close();
     }
 
-    public static void initConfiguration() {
+    private static void initConfiguration() {
         userMap =  new HashMap<String, User>();
         channelMap =  new HashMap<String, Channel>();
     }
@@ -65,7 +65,7 @@ public class ChatServer {
         props.put("retry.backoff.ms", "500");
 
         ProducerConfig config = new ProducerConfig(props);
-        responseProducer = new Producer(config);
+        responseProducer = new Producer<String, String>(config);
 
     }
 
@@ -107,7 +107,7 @@ public class ChatServer {
         String corrId;
 
         while (true) {
-            if(consumerIterator.hasNext()) {
+            if (consumerIterator.hasNext()) {
                 MessageAndMetadata<byte[], byte[]> request = consumerIterator.next();
                 corrId = new String(request.key());
 
@@ -185,7 +185,7 @@ public class ChatServer {
     public static String join(String nickname, String channelName) {
         System.out.println("- " + nickname + " requested to join #" + channelName);
 
-        List userChannelList = userMap.get(nickname).getJoinedChannel();
+        List<String> userChannelList = userMap.get(nickname).getJoinedChannel();
         StringBuilder message = new StringBuilder();
         Response response = new Response();
 
@@ -207,7 +207,7 @@ public class ChatServer {
         return response.toString();
     }
 
-    public static String leave(String nickname, String channelName) {
+    private static String leave(String nickname, String channelName) {
         System.out.println("- " + nickname + " request to leave #" + channelName);
 
         StringBuilder message = new StringBuilder();
@@ -228,7 +228,7 @@ public class ChatServer {
     }
 
 
-    public static String logout(String nickname) {
+    private static String logout(String nickname) {
         System.out.println("- " + nickname + " requested to logout");
         userMap.remove(nickname);
 
@@ -298,13 +298,13 @@ public class ChatServer {
         return response.toString();
     }
 
-    public static void distributeMessage(Message message, List<String> userChannelList) throws IOException {
+    private static void distributeMessage(Message message, List<String> userChannelList) throws IOException {
         for(String channelName:userChannelList) {
             distributeMessage(message, channelName);
         }
     }
 
-    public static void distributeMessage(Message message, String channelName) throws IOException {
+    private static void distributeMessage(Message message, String channelName) throws IOException {
         String enrichedMessage = "@" + channelName + " " + message.getSender()+ ": " + message.getText();
         sendMessageToTopic(enrichedMessage, channelName);
     }
