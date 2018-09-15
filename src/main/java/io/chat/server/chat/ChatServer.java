@@ -123,7 +123,7 @@ public class ChatServer {
     }
 
     private String processRequest(String requestMessage) throws JsonProcessingException {
-        Request request = null;
+        Request request;
         try {
             request = mapper.readValue(requestMessage, Request.class);
         } catch (IOException e) {
@@ -164,7 +164,7 @@ public class ChatServer {
             nickname = generateRandomNickname();
             message.append("* Random user generated\n");
         }
-        message.append("* Successfully logged in as " + nickname);
+        message.append("* Successfully logged in as ").append(nickname);
 
         userMap.put(nickname, new User(nickname));
 
@@ -199,7 +199,7 @@ public class ChatServer {
             }
 
             userChannelList.add(channelName);
-            message.append("* #" + channelName + " joined successfully");
+            message.append("* #").append(channelName).append(" joined successfully");
             response.putStatus(true);
         }
 
@@ -215,7 +215,7 @@ public class ChatServer {
 
         if(!userMap.get(nickname).getJoinedChannel().contains(channelName)) {
             System.err.println("- Failed to leave channel. " + nickname + " is not a member of #" + channelName);
-            message.append("* Failed to leave.\n* You are not a member of #" + channelName);
+            message.append("* Failed to leave.\n* You are not a member of #").append(channelName);
             response.putStatus(false);
         } else {
             userMap.get(nickname).getJoinedChannel().remove(channelName);
@@ -239,12 +239,12 @@ public class ChatServer {
         return response.toString();
     }
 
-    public static String exit(String nickname) {
+    private static String exit(String nickname) {
         return logout(nickname);
     }
 
 
-    public static String sendMessage(String nickname, String channelName, String message) {
+    private static String sendMessage(String nickname, String channelName, String message) {
         System.out.println("- " + nickname + " sends a message to #" + channelName);
         StringBuilder returnedMessage = new StringBuilder();
         Response response = new Response();
@@ -271,7 +271,7 @@ public class ChatServer {
         return response.toString();
     }
 
-    public static String broadcastMessage(String nickname, String message) {
+    private static String broadcastMessage(String nickname, String message) {
         System.out.println("- " + nickname + " broadcasts a message");
         StringBuilder returnedMessage = new StringBuilder();
         Response response = new Response();
